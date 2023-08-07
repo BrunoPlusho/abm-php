@@ -6,9 +6,7 @@ include("config.php");
 $id = $_GET['id'];
 
 //deleting the row from table
-$sql = "DELETE FROM users WHERE id=:id";
-$query = $dbConn->prepare($sql);
-$query->execute(array(':id' => $id));
+$query = $dbConn->exec("DELETE FROM usuarios WHERE id=".$id." ");
 
 //redirecting to the display page (index.php in our case)
 header("Location:index.php");

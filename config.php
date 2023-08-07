@@ -1,18 +1,14 @@
 <?php
 
-$databaseHost = 'localhost';
-$databaseName = 'test';
-$databaseUsername = 'root';
-$databasePassword = 'root';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 try {
-	// http://php.net/manual/en/pdo.connections.php
-	$dbConn = new PDO("mysql:host={$databaseHost};dbname={$databaseName}", $databaseUsername, $databasePassword);
-	
-	$dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Setting Error Mode as Exception
-	// More on setAttribute: http://php.net/manual/en/pdo.setattribute.php
+	$dbConn = new SQLite3('test.db');
+	$dbConn->query("CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, nombre TEXT, edad INTEGER, email TEXT)");
 } catch(PDOException $e) {
 	echo $e->getMessage();
 }
- 
+
 ?>

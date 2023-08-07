@@ -3,32 +3,34 @@
 include_once("config.php");
 
 //fetching data in descending order (lastest entry first)
-$result = $dbConn->query("SELECT * FROM users ORDER BY id DESC");
+$results = $dbConn->query("SELECT * FROM usuarios ORDER BY id DESC");
 ?>
 
 <html>
-<head>	
+<head>
 	<title>Homepage</title>
 </head>
 
 <body>
-<a href="add.html">Add New Data</a><br/><br/>
+<a href="add.html">Agregar Usuario</a><br/><br/>
 
 	<table width='80%' border=0>
 
 	<tr bgcolor='#CCCCCC'>
-		<td>Name</td>
-		<td>Age</td>
+		<td>Nombre</td>
+		<td>Edad</td>
 		<td>Email</td>
-		<td>Update</td>
+		<td>Acciones</td>
 	</tr>
-	<?php 	
-	while($row = $result->fetch(PDO::FETCH_ASSOC)) { 		
-		echo "<tr>";
-		echo "<td>".$row['name']."</td>";
-		echo "<td>".$row['age']."</td>";
-		echo "<td>".$row['email']."</td>";	
-		echo "<td><a href=\"edit.php?id=$row[id]\">Edit</a> | <a href=\"delete.php?id=$row[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
+	<?php 
+	if($results){
+		while($row = $results->fetchArray()) {
+			echo "<tr>";
+			echo "<td>".$row['nombre']."</td>";
+			echo "<td>".$row['edad']."</td>";
+			echo "<td>".$row['email']."</td>";
+			echo "<td><a href=\"edit.php?id=$row[id]\">Edit</a> | <a href=\"delete.php?id=$row[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
+		}
 	}
 	?>
 	</table>
