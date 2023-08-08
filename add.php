@@ -35,7 +35,7 @@
 			// if all the fields are filled (not empty) 
 
 			//insert data to database
-			$sql = "INSERT INTO usuarios(nombre, edad, email) VALUES('".$nombre."', ".$edad.", '".$email."')";
+			$sql = "INSERT INTO usuarios(nombre, edad, email) VALUES('" . $nombre . "', " . $edad . ", '" . $email . "')";
 			$query = $dbConn->exec($sql);
 			echo "<font color='green'>Se agregó con éxito.";
 			echo "<br/><a href='index.php'>Ir a home</a>";
