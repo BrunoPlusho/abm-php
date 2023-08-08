@@ -24,7 +24,8 @@ $results = $dbConn->query("SELECT * FROM usuarios ORDER BY id DESC");
 	</tr>
 	<?php 
 	if($results){
-		while($row = $results->fetchArray()) {
+		$rows = $results->fetchAll();
+		foreach($rows as $row){
 			echo "<tr>";
 			echo "<td>".$row['nombre']."</td>";
 			echo "<td>".$row['edad']."</td>";

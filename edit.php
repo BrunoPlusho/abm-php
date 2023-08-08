@@ -49,12 +49,10 @@ $id = $_GET['id'];
 
 //selecting data associated with this particular id
 $result = $dbConn->query("SELECT * FROM usuarios WHERE id=".$id." ");
-while($row = $result->fetchArray())
-{
-	$nombre = $row['nombre'];
-	$edad = $row['edad'];
-	$email = $row['email'];
-}
+$row = $result->fetch();
+$nombre = $row['nombre'];
+$edad = $row['edad'];
+$email = $row['email'];
 ?>
 <html>
 <head>	
