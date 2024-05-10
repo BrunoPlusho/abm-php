@@ -1,5 +1,5 @@
 <?php
-// including the database connection file
+// Incluyendo el archivo de conexión a la base de datos
 include_once("config.php");
 
 if (isset($_POST['update'])) {
@@ -8,22 +8,22 @@ if (isset($_POST['update'])) {
 	$edad = $_POST['edad'];
 	$email = $_POST['email'];
 
-	// checking empty fields
+	// Verificando campos vacíos
 	if (empty($nombre) || empty($edad) || empty($email)) {
 
-		if (empty($name)) {
-			echo "<font color='red'>Name field is empty.</font><br/>";
+		if (empty($nombre)) {
+			echo "<font color='red'>El campo Nombre está vacío.</font><br/>";
 		}
 
-		if (empty($age)) {
-			echo "<font color='red'>Age field is empty.</font><br/>";
+		if (empty($edad)) {
+			echo "<font color='red'>El campo Edad está vacío.</font><br/>";
 		}
 
 		if (empty($email)) {
-			echo "<font color='red'>Email field is empty.</font><br/>";
+			echo "<font color='red'>El campo Email está vacío.</font><br/>";
 		}
 	} else {
-		//updating the table
+		// Actualizando la tabla
 		$sql = "UPDATE usuarios SET nombre=:nombre, edad=:edad, email=:email WHERE id=:id";
 		$query = $dbConn->prepare($sql);
 
@@ -33,19 +33,19 @@ if (isset($_POST['update'])) {
 		$query->bindparam(':email', $email);
 		$query->execute();
 
-		// Alternative to above bindparam and execute
-		// $query->execute(array(':id' => $id, ':name' => $name, ':email' => $email, ':age' => $age));
+		// Alternativa para bindparam y execute
+		// $query->execute(array(':id' => $id, ':nombre' => $nombre, ':email' => $email, ':edad' => $edad));
 
-		//redirectig to the display page. In our case, it is index.php
+		// Redireccionando a la página de visualización. En este caso, es index.php
 		header("Location: index.php");
 	}
 }
 ?>
 <?php
-//getting id from url
+// Obteniendo id desde la URL
 $id = $_GET['id'];
 
-//selecting data associated with this particular id
+// Seleccionando datos asociados con este id particular
 $result = $dbConn->query("SELECT * FROM usuarios WHERE id=" . $id . " ");
 $row = $result->fetch();
 $nombre = $row['nombre'];
@@ -77,7 +77,7 @@ $email = $row['email'];
 				<td><input type="text" name="email" value="<?php echo $email; ?>"></td>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="id" value=<?php echo $_GET['id']; ?>></td>
+				<td><input type="hidden" name="id" value="<?php echo $_GET['id']; ?>"></td>
 				<td><input type="submit" name="update" value="Update"></td>
 			</tr>
 		</table>

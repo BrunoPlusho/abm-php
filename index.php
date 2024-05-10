@@ -1,15 +1,15 @@
 <?php
-//including the database connection file
+// incluyendo el archivo de conexión a la base de datos
 include_once("config.php");
 
-//fetching data in descending order (lastest entry first)
+// obteniendo los datos en orden descendente (última entrada primera)
 $results = $dbConn->query("SELECT * FROM usuarios ORDER BY id DESC");
 ?>
 
 <html>
 
 <head>
-	<title>Homepage</title>
+	<title>Página principal</title>
 </head>
 
 <body>
@@ -27,10 +27,10 @@ $results = $dbConn->query("SELECT * FROM usuarios ORDER BY id DESC");
 			$rows = $results->fetchAll();
 			foreach ($rows as $row) {
 				echo "<tr>";
-				echo "<td>" . $row['nombre'] . "</td>";
-				echo "<td>" . $row['edad'] . "</td>";
-				echo "<td>" . $row['email'] . "</td>";
-				echo "<td><a href=\"edit.php?id=$row[id]\">Edit</a> | <a href=\"delete.php?id=$row[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+				echo "<td>" . $row['nombre'] . "</td>"; // Mostrar nombre
+				echo "<td>" . $row['edad'] . "</td>"; // Mostrar edad
+				echo "<td>" . $row['email'] . "</td>"; // Mostrar email
+				echo "<td><a href=\"edit.php?id=$row[id]\">Editar</a> | <a href=\"delete.php?id=$row[id]\" onClick=\"return confirm('¿Estás seguro de que quieres eliminar?')\">Eliminar</a></td>"; // Acciones de edición y eliminación
 			}
 		}
 		?>

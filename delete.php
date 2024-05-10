@@ -1,13 +1,13 @@
 <?php
-//including the database connection file
+// Incluyendo el archivo de conexión a la base de datos
 include("config.php");
 
-//getting id of the data from url
+// Obteniendo el id de los datos desde la URL
 $id = $_GET['id'];
 
-//deleting the row from table
+// Eliminando la fila de la tabla
 $query = $dbConn->exec("DELETE FROM usuarios WHERE id=".$id." ");
 
-//redirecting to the display page (index.php in our case)
-header("Location:index.php");
+// Redireccionando a la página de visualización (index.php en este caso)
+header("Location: index.php");
 ?>
